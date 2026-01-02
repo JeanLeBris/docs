@@ -1,0 +1,48 @@
+\documentclass{report}
+\usepackage{style-def}
+\usepackage{perso-style}
+
+% \watermarkon
+% \DraftwatermarkOptions{stamp=false}
+
+\NewDocumentCommand{\rot}{O{45} O{1em} m}{\makebox[#2][l]{\rotatebox{#1}{#3}}}
+
+\title{Partition systems \& file systems}
+\author{{\sc Le Bris} Jean}
+
+\makeglossaries
+\input{src/glossary.tex}
+
+
+
+\begin{document}
+
+\subfile{src/titlePage}
+\subfile{src/thanks}
+
+\clearpage
+\tableofcontents
+
+\clearpage
+\printglossary[type=\acronymtype]
+\printglossary
+%\printglossaries
+
+\clearpage
+\listoffigures
+\listoftables
+
+\subfile{src/introduction}
+
+\subfile{src/context}
+\subfile{src/workDone}
+\subfile{src/conclusion}
+
+\clearpage
+\bibliographystyle{ieeetr}
+\bibliography{src/bibliography}
+
+\subfile{src/annexes}
+\subfile{src/abstract}
+
+\end{document}

@@ -1,0 +1,30 @@
+\ProvidesClass{style-def}
+
+\usepackage{amsmath}
+
+\usepackage{url}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{indentfirst}
+\usepackage{datetime}
+\usepackage{csvsimple}
+\usepackage{subfiles}
+\usepackage[pdftex]{graphicx}
+\usepackage[toc,page]{appendix}
+\usepackage[acronym,automake,nogroupskip]{glossaries}
+\usepackage[numbib,notlof,notlot,nottoc]{tocbibind}
+
+\RequirePackage[english]{babel}
+% \usepackage[lang-warn=false]{datatool-base}
+
+% \addto\captionsfrench{\renewcommand{\contentsname}{Sommaire}}
+% \addto\captionsfrench{\renewcommand{\listfigurename}{Liste des Figures}}
+% \addto\captionsfrench{\renewcommand{\listtablename}{Liste des Tableaux}}
+% \addto\captionsfrench{\renewcommand{\glossaryname}{Glossaire}}
+% \addto\captionsfrench{\renewcommand{\refname}{Bibliographie}}
+% \addto\captionsfrench{\renewcommand{\appendixtocname}{Annexes}}
+% \addto\captionsfrench{\renewcommand{\appendixpagename}{Annexes}}
+% \addto\captionsfrench{\renewcommand{\tablename}{Tableau}}
+
+\newcommand{\nocontentsline}[3]{}
+\newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}

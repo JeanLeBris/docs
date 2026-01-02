@@ -1,0 +1,62 @@
+\ProvidesClass{perso-style}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows, positioning, chains, automata, calc, quotes}
+
+%\usepackage{titlesec}
+\usepackage{soul}
+
+\usepackage{underscore}
+
+\usepackage{subcaption}
+
+%\usePackage{amsmath}
+
+%\newcommand*\diff{\mathop{}\!\mathrm{d}}
+%\newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
+
+\usepackage{float}
+
+\usepackage{comment}
+
+\usepackage[skip=10pt plus1pt, indent=0pt]{parskip}
+
+\setlength{\parskip}{\baselineskip}
+\setlength{\headheight}{20.30977pt}
+\addtolength{\topmargin}{-8.30977pt}
+
+\usepackage[colorlinks=true,linkcolor=black,citecolor=blue,urlcolor=blue]{hyperref}
+
+% \usepackage{relsize}
+
+% \usepackage{subfigure}
+
+\usepackage[dvipsnames]{xcolor}
+
+% \usepackage{draftwatermark}
+% \SetWatermarkText{CONFIDENTIEL}
+% \SetWatermarkScale{0.6}
+% % \SetWatermarkLightness{0.8}
+% \SetWatermarkLightness{0.85}
+
+\usepackage{pgfgantt}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{dateplot}
+% \usepackage{filecontents}
+
+\usepackage{silence}
+\WarningFilter{latex}{Writing or overwriting}
+
+
+
+\newcommand{\okcheck}{}%
+\DeclareRobustCommand{\okcheck}{%
+  \tikz\fill[scale=0.4, color=ForestGreen] (0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;%
+}
+
+\newcommand{\nokcheck}{}%
+\DeclareRobustCommand{\nokcheck}{%
+  \tikz\draw[very thick, scale=0.4, color=red] (0,0) -- (.5,.5) -- (.25,.25) -- (.5,0) -- (0,.5);%
+}
