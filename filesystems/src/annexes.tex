@@ -1,7 +1,162 @@
 \clearpage
 \begin{appendices}
-\tocless\section{Some appendice}
+\tocless\section{FAT16}
 
-Appendice A
+\begin{table}[ht]
+    \scriptsize
+    \centering
+    \begin{subtable}{0.49\linewidth}
+        \begin{tabular}{|c|c|p{5cm}|}
+            \hline
+            Offset & Size & Description \\ \hline
+            0 & 3 & Jump instruction \\ \hline
+            3 & 8 & Name of the system that created this volume \\ \hline
+            11 & 2 & Amount of bytes per sector \\ \hline
+            13 & 1 & Amount of sectors per cluster \\ \hline
+            14 & 2 & Amount of sectors in reserved area (boot sector included) \\ \hline
+            16 & 1 & Amount of FAT copies \\ \hline
+            17 & 2 & Defines amount of entries in the root dir \\ \hline
+            19 & 2 & Total amount of sectors in this volume (in 16 bits) \\ \hline
+            21 & 1 & Media descriptor byte \\ \hline
+            22 & 2 & Amount of sectors occupied by a FAT (in 16 bits) \\ \hline
+            24 & 2 & Amount of sectors per track \\ \hline
+            26 & 2 & Amount of heads \\ \hline
+            28 & 4 & Amount of hiddent physical sectors preceding this FAT volume \\ \hline
+            32 & 4 & Total amount of sectors in this volume (in 32 bits) \\ \hline
+            36 & 1 & Drive number \\ \hline
+            37 & 1 & Reserved \\ \hline
+            38 & 1 & Extended boot signature \\ \hline
+            39 & 4 & Volume serial number \\ \hline
+            43 & 11 & Volume label \\ \hline
+            54 & 8 & File system type \\ \hline
+            62 & 448 & Bootstrap program \\ \hline
+            510 & 2 & Boot signature (should be 0xaa55) \\ \hline
+            512 &  & Filled with zeros \\ \hline
+        \end{tabular}
+        \caption{Content of the FAT16 boot sector}
+    \end{subtable}
+    \begin{subtable}{0.49\linewidth}
+        \begin{subtable}{1\linewidth}
+            \begin{tabular}{|c|c|p{5cm}|}
+                \hline
+                Offset & Size & Description \\ \hline
+                0 & 11 & Short File Name (SFN) \\ \hline
+                11 & 1 & File attributes \\ \hline
+                12 & 1 & Optional flags \\ \hline
+                13 & 1 & Optional sub-second information \\ \hline
+                14 & 2 & Optional file creation time \\ \hline
+                16 & 2 & Optional file creation date \\ \hline
+                18 & 2 & Optional last accessed date \\ \hline
+                20 & 2 & Upper part of first cluster index (0 for FAT16) \\ \hline
+                22 & 2 & Last time when any change is made to the file \\ \hline
+                24 & 2 & Last date when any change is made to the file \\ \hline
+                26 & 2 & Lower part of first cluster index \\ \hline
+                28 & 4 & Size of the file in bytes \\ \hline
+            \end{tabular}
+            \caption{Content of a FAT16 directory entry}
+        \end{subtable}
+        \begin{subtable}{1\linewidth}
+            \begin{tabular}{|c|c|p{5cm}|}
+                \hline
+                Offset & Size & Description \\ \hline
+                0 & 1 & Sequence number (starts with 1) \\ \hline
+                1 & 10 & 1\textsuperscript{st} to 5\textsuperscript{th} characters \\ \hline
+                11 & 1 & LFN attribute \\ \hline
+                12 & 1 & zeros \\ \hline
+                13 & 1 & Checksum of SFN entry associated with this entry \\ \hline
+                14 & 12 & 6\textsuperscript{th} to 11\textsuperscript{th} characters \\ \hline
+                26 & 2 & zeros \\ \hline
+                28 & 4 & 12\textsuperscript{th} to 13\textsuperscript{th} characters \\ \hline
+            \end{tabular}
+            \caption{Content of a Long File Name (LFN) entry}
+        \end{subtable}
+    \end{subtable}
+    \caption{Structures of a FAT16 volume}
+\end{table}
+
+\clearpage
+\tocless\section{FAT32}
+
+\begin{table}[ht]
+    \scriptsize
+    \centering
+    \begin{subtable}{0.49\linewidth}
+        \begin{tabular}{|c|c|p{5cm}|}
+            \hline
+            Offset & Size & Description \\ \hline
+            0 & 3 & Jump instruction \\ \hline
+            3 & 8 & Name of the system that created this volume \\ \hline
+            11 & 2 & Amount of bytes per sector \\ \hline
+            13 & 1 & Amount of sectors per cluster \\ \hline
+            14 & 2 & Amount of sectors in reserved area (boot sector included) \\ \hline
+            16 & 1 & Amount of FAT copies \\ \hline
+            17 & 2 & Defines amount of entries in the root dir \\ \hline
+            19 & 2 & Total amount of sectors in this volume (in 16 bits) \\ \hline
+            21 & 1 & Media descriptor byte \\ \hline
+            22 & 2 & Amount of sectors occupied by a FAT (in 16 bits) \\ \hline
+            24 & 2 & Amount of sectors per track \\ \hline
+            26 & 2 & Amount of heads \\ \hline
+            28 & 4 & Amount of hiddent physical sectors preceding this FAT volume \\ \hline
+            32 & 4 & Total amount of sectors in this volume (in 32 bits) \\ \hline
+            36 & 4 & Amount of sectors occupied by a FAT (in 32 bits) \\ \hline
+            40 & 2 & Extra flags \\ \hline
+            42 & 2 & FAT32 version \\ \hline
+            44 & 4 & First cluster index of the root dir \\ \hline
+            48 & 2 & Sector of FSInfo structure in offset from the top of the volume \\ \hline
+            50 & 2 & Sector of backup boot sector in offset from the top of the volume \\ \hline
+            52 & 12 & Reserved \\ \hline
+            64 & 1 &  \\ \hline
+            65 & 1 &  \\ \hline
+            66 & 1 &  \\ \hline
+            67 & 4 &  \\ \hline
+            71 & 11 &  \\ \hline
+            82 & 8 & File system type \\ \hline
+            90 & 420 & Bootstrap program \\ \hline
+            510 & 2 & Boot signature (should be 0xaa55) \\ \hline
+            512 &  & Filled with zeros \\ \hline
+        \end{tabular}
+        \caption{Content of the FAT32 boot sector}
+    \end{subtable}
+    \begin{subtable}{0.49\linewidth}
+        \begin{subtable}{1\linewidth}
+            \begin{tabular}{|c|c|p{5cm}|}
+                \hline
+                Offset & Size & Description \\ \hline
+                0 & 11 & Short File Name (SFN) \\ \hline
+                11 & 1 & File attributes \\ \hline
+                12 & 1 & Optional flags \\ \hline
+                13 & 1 & Optional sub-second information \\ \hline
+                14 & 2 & Optional file creation time \\ \hline
+                16 & 2 & Optional file creation date \\ \hline
+                18 & 2 & Optional last accessed date \\ \hline
+                20 & 2 & Upper part of first cluster index (0 for FAT16) \\ \hline
+                22 & 2 & Last time when any change is made to the file \\ \hline
+                24 & 2 & Last date when any change is made to the file \\ \hline
+                26 & 2 & Lower part of first cluster index \\ \hline
+                28 & 4 & Size of the file in bytes \\ \hline
+            \end{tabular}
+            \caption{Content of a FAT32 directory entry}
+        \end{subtable}
+        \begin{subtable}{1\linewidth}
+            \begin{tabular}{|c|c|p{5cm}|}
+                \hline
+                Offset & Size & Description \\ \hline
+                0 & 1 & Sequence number (starts with 1) \\ \hline
+                1 & 10 & 1\textsuperscript{st} to 5\textsuperscript{th} characters \\ \hline
+                11 & 1 & LFN attribute \\ \hline
+                12 & 1 & zeros \\ \hline
+                13 & 1 & Checksum of SFN entry associated with this entry \\ \hline
+                14 & 12 & 6\textsuperscript{th} to 11\textsuperscript{th} characters \\ \hline
+                26 & 2 & zeros \\ \hline
+                28 & 4 & 12\textsuperscript{th} to 13\textsuperscript{th} characters \\ \hline
+            \end{tabular}
+            \caption{Content of a Long File Name (LFN) entry}
+        \end{subtable}
+    \end{subtable}
+    \caption{Structures of a FAT32 volume}
+\end{table}
+
+\clearpage
+\tocless\section{exFAT}
 
 \end{appendices}

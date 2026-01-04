@@ -25,7 +25,7 @@
         \node (first_fat) at ([xshift=10mm]boot.east) [_rect, minimum height=2cm, minimum width=2cm, draw=red, fill=red, fontscale] {First FAT};
         \draw [-] (first_fat.north east) -- (first_fat.south east);
         \node (second_fat) at ([xshift=10mm]first_fat.east) [_rect, minimum height=2cm, minimum width=2cm, draw=red, fill=red, fontscale] {Second FAT};
-        \node (data) at ([xshift=50mm]second_fat.east) [_rect, minimum height=2cm, minimum width=10cm, draw=blue, fill=blue, fontscale] {Data area};
+        \node (data) at ([xshift=50mm]second_fat.east) [_rect, minimum height=2cm, minimum width=10cm, draw=blue, fill=blue, fontscale] {Data region};
     \end{tikzpicture}
     \caption{Basic structure of a FAT partition}
 \end{figure}
@@ -55,50 +55,89 @@
         \draw [-] (first_fat.north east) -- (first_fat.south east);
         \node (second_fat) at ([xshift=10mm]first_fat.east) [_rect, minimum height=2cm, minimum width=2cm, draw=red, fill=red, fontscale] {Second FAT};
         \node (root) at ([xshift=10mm]second_fat.east) [_rect, minimum height=2cm, minimum width=2cm, draw=green, fill=green, fontscale] {Root dir};
-        \node (data) at ([xshift=40mm]root.east) [_rect, minimum height=2cm, minimum width=8cm, draw=blue, fill=blue, fontscale] {Data area};
+        \node (data) at ([xshift=40mm]root.east) [_rect, minimum height=2cm, minimum width=8cm, draw=blue, fill=blue, fontscale] {Data region};
     \end{tikzpicture}
-    \caption{Basic structure of a FAT partition}
+    \caption{Basic structure of a FAT16 partition}
 \end{figure}
 
 \subsubsection{The boot sector}
 
-\begin{table}[ht]
-    \centering
-    \begin{tabular}{|c|c|l|}
-        \hline
-        Offset & Size & Description \\ \hline
-        0 & 3 &  \\ \hline
-        3 & 8 &  \\ \hline
-        11 & 2 &  \\ \hline
-        13 & 1 &  \\ \hline
-        14 & 2 &  \\ \hline
-        16 & 1 &  \\ \hline
-        17 & 2 &  \\ \hline
-        19 & 2 &  \\ \hline
-        21 & 1 &  \\ \hline
-        22 & 2 &  \\ \hline
-        24 & 2 &  \\ \hline
-        26 & 2 &  \\ \hline
-        28 & 4 &  \\ \hline
-        32 & 4 &  \\ \hline
-        36 & 1 &  \\ \hline
-        37 & 1 &  \\ \hline
-        38 & 1 &  \\ \hline
-        39 & 4 &  \\ \hline
-        43 & 11 &  \\ \hline
-        54 & 8 &  \\ \hline
-        62 & 448 &  \\ \hline
-        510 & 2 &  \\ \hline
-        512 &  &  \\ \hline
-    \end{tabular}
-    \caption{Content of the FAT16 boot sector}
-\end{table}
+% \renewcommand\theadalign{bc}
+% \renewcommand\theadfont{\bfseries}
+% \renewcommand\theadgape{\Gape[4pt]}
+% % \renewcommand\cellgape{\Gape[4pt]}
 
-\subsubsection{The FAT areas}
+\subsubsection{The FAT regions}
 
 \cite{FAT_filesystem}
 \gls{FAT}
 
 \subsection{FAT32}
 
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[
+            _rect/.style = {
+                rectangle,
+                align=center,
+				inner sep=0pt,
+				outer sep=0pt
+            },
+            arrow/.style = {
+                ultra thick, 
+                ->,
+                >=stealth
+            },
+			fontscale/.style = {
+				font=\footnotesize
+			}
+        ]
+        \node (boot) [_rect, minimum height=2cm, minimum width=2cm, draw=gray, fill=gray, fontscale] {Boot sector};
+        \draw [-] (boot.north east) -- (boot.south east);
+        \node (reserved) at ([xshift=10mm]boot.east) [_rect, minimum height=2cm, minimum width=2cm, draw=gray, fill=gray, fontscale] {Reserved};
+        \node (first_fat) at ([xshift=10mm]reserved.east) [_rect, minimum height=2cm, minimum width=2cm, draw=red, fill=red, fontscale] {First FAT};
+        \draw [-] (first_fat.north east) -- (first_fat.south east);
+        \node (second_fat) at ([xshift=10mm]first_fat.east) [_rect, minimum height=2cm, minimum width=2cm, draw=red, fill=red, fontscale] {Second FAT};
+        \node (data) at ([xshift=40mm]second_fat.east) [_rect, minimum height=2cm, minimum width=8cm, draw=blue, fill=blue, fontscale] {Data region};
+    \end{tikzpicture}
+    \caption{Basic structure of a FAT32 partition}
+\end{figure}
+
+\subsubsection{The boot sector}
+
+\subsubsection{The FAT regions}
+
 \subsection{exFAT}
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[
+            _rect/.style = {
+                rectangle,
+                align=center,
+				inner sep=0pt,
+				outer sep=0pt
+            },
+            arrow/.style = {
+                ultra thick, 
+                ->,
+                >=stealth
+            },
+			fontscale/.style = {
+				font=\footnotesize
+			}
+        ]
+        \node (boot) [_rect, minimum height=2cm, minimum width=2cm, draw=gray, fill=gray, fontscale] {Boot region};
+        \draw [-] (boot.north east) -- (boot.south east);
+        \node (backup_boot) at ([xshift=10mm]boot.east) [_rect, minimum height=2cm, minimum width=2cm, draw=gray, fill=gray, fontscale] {Backup\\boot region};
+        \node (first_fat) at ([xshift=10mm]backup_boot.east) [_rect, minimum height=2cm, minimum width=2cm, draw=red, fill=red, fontscale] {First FAT};
+        \draw [-] (first_fat.north east) -- (first_fat.south east);
+        \node (second_fat) at ([xshift=10mm]first_fat.east) [_rect, minimum height=2cm, minimum width=2cm, draw=red, fill=red, fontscale] {Second FAT};
+        \node (data) at ([xshift=40mm]second_fat.east) [_rect, minimum height=2cm, minimum width=8cm, draw=blue, fill=blue, fontscale] {Data region};
+    \end{tikzpicture}
+    \caption{Basic structure of a exFAT partition}
+\end{figure}
+
+\subsubsection{The boot region}
+
+\subsubsection{The FAT regions}
